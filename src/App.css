@@ -1,0 +1,97 @@
+.page{
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  max-width: 800px;
+  max-height: 100vw;
+}
+
+.Finder, .Booker{
+  background-color: #f2f2f2;
+  border-radius: 2px;
+  display: block;
+  padding: 25px;
+  margin: 10px 10px 10px 10px;
+  box-shadow: 4px 4px 16px grey;
+}
+
+.input-wrapper{
+  display: block;
+  margin-top: 20px;
+}
+
+.input-wrapper>input{
+  margin-right: 20px;
+  margin-left: 2px;
+  padding: 8px;
+  border: none;
+}
+
+.input-wrapper>span{
+  display:block;
+  padding-right: 5px;
+  font-size: 12px;
+}
+
+.input-area{
+  padding: 3px;
+  margin-right: 5px;
+}
+
+.bttn{
+  background-color: teal;
+  color: white;
+  margin-top: 20px;
+  padding:5px;
+  border-radius: 3px;
+  width: fit-content;
+}
+
+
+.submit-button:hover{
+  cursor:pointer;
+}
+
+*:focus{
+  outline:none
+}
+
+.parameter-tag-wrapper{
+  display: block;
+}
+
+.parameter-label{
+  font-size: 10px;
+}
+
+.parameter-tag{
+  display: inline-block;
+  border-radius: 3px;
+  border: 1.5px solid teal;
+  color: #323232;
+  font-size: 10px;
+  padding: 4px;
+  margin: 5px;
+}
+
+.campsites{
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.bookButton{
+  margin: 20px;;
+}
+.campsite{
+  background-color: lightGrey;  
+  font-size: 5%;
+  display:inline-block;
+  margin: 10px;
+  max-width: 340px;;
+  min-width: 250px;
+  width: 100%;
+}
+
+.campsite> *{
+  margin: 10px;
+}
