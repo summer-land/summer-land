@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
+
 import Booker from "./Booker";
-import loader from "../assets/loader.gif";
+import Loader from "./Loader";
 
 import axios from "axios";
 
 const endpoint = "http://ec2-18-191-219-27.us-east-2.compute.amazonaws.com:3000/booksites";
-
 
 class Finder extends Component {
     constructor(props){
@@ -18,7 +18,8 @@ class Finder extends Component {
             enddate:'',
             numoccupants:'',
             desirednightsstayed:'',
-            response:null
+            response:null,
+            searching:false
         }
 
         this.onClick = this.onClick.bind(this);
@@ -26,11 +27,13 @@ class Finder extends Component {
     }
 
     render(){
-        const { searchterm, startdate, enddate, numoccupants, desirednightsstayed, accesstoken, response, params } = this.state;
+        const { searchterm, startdate, enddate, numoccupants, desirednightsstayed, accesstoken, response, params, searching } = this.state;
+        console.log(searching);
         return(
-            <div>
+        <div>
             <div className="Finder">
-            <div id="finder-area">
+            { !searching
+            ? <div id="finder-area">
               <h2>Find a campsite!</h2>
               <form>
                   <div className="input-wrapper">
@@ -88,6 +91,7 @@ class Finder extends Component {
                   </button>
               </form>
             </div>
+            : <Loader /> }
           </div>
         <div>
             { response ?
@@ -112,8 +116,8 @@ class Finder extends Component {
             desirednightsstayed:this.state.desirednightsstayed,
         };
 
-        axios({
-            method: 'POST',
+        let searching = true;
+        axios( { method: 'POST',
             url:endpoint,
             data: JSON.stringify(params),
             config : {headers: { 
@@ -123,10 +127,13 @@ class Finder extends Component {
             }}
         }).then( (rsp) => {
             let data = rsp.data;
-            this.setState({response: data, params:params});
+            this.setState( {response: data, params:params, searching:false} );
         }).catch( error => {
+            searching = false;
+            this.setState({searching:false})
             console.log( error.response )
         });
+        this.setState({searching:searching});
     }
     
     onChange(event){

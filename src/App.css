@@ -7,7 +7,7 @@
 }
 
 .Finder, .Booker{
-  background-color: #f2f2f2;
+  background-color: #fff;
   border-radius: 2px;
   display: block;
   padding: 25px;
@@ -21,6 +21,7 @@
 }
 
 .input-wrapper>input{
+  background-color: #f2f2f2;
   margin-right: 20px;
   margin-left: 2px;
   padding: 8px;
@@ -46,7 +47,6 @@
   border-radius: 3px;
   width: fit-content;
 }
-
 
 .submit-button:hover{
   cursor:pointer;
@@ -94,4 +94,16 @@
 
 .campsite> *{
   margin: 10px;
+}
+
+.Loader{
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  width: fit-content;
+}
+
+.loader-img{
+  width: 200px;
+  height:200px;
 }
