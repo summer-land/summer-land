@@ -17,6 +17,7 @@ class App extends Component {
 
     this.onClick = this.onClick.bind(this);
     this.onChange = this.onChange.bind(this);
+    this.onKeyPress = this.onKeyPress.bind(this);
   }
 
  render(){
@@ -33,7 +34,7 @@ class App extends Component {
                 </div>
               : <div className="Booker">
                     <p>
-                        Welcome to Summerland. A super simple applicaiton that allows you to book a campsite at a national park automatically. If you are here to see how the app works use the code 4444. Otherwise please contact Kevin and Michael at summahsummahland@gmail.com for access codes.
+                        Welcome to Summerland. A super simple applicaiton that allows you to book a campsite at a national park automatically. If you are here to see how the app works use the code summerland. Otherwise please contact Kevin and Michael at summahsummahland@gmail.com for access codes.
                     </p>
                   <form>
                         <input
@@ -42,6 +43,7 @@ class App extends Component {
                             name="password"
                             value={password}
                             onChange={this.onChange}
+                            onKeyPress={this.onKeyPress}
                         />
                       <button className="submit-button bttn"
                               onClick={this.onClick}
@@ -63,10 +65,9 @@ class App extends Component {
   }
   
   onClick(){
-      
-    let params = JSON.stringify({"password": "summerland"});
-    //let params = {password:this.state.password}
-
+    //let params = JSON.stringify({"password": "summerland"});
+    let params = {password:this.state.password}
+    this.setState({key:true})
     axios({
         method: 'POST',
         url: endpoint,
@@ -82,23 +83,13 @@ class App extends Component {
       }).catch((error) => {
           console.log( error.response )
       });
-      /*
-      var settings = {
-        "async": true,
-        "crossDomain": true,
-        "url": "http://ec2-18-191-219-27.us-east-2.compute.amazonaws.com:3000/validatecode",
-        "method": "POST",
-        "headers": {
-          "Cache-Control": "no-cache",
-          "Postman-Token": "ef74191e-cfd6-45e9-8ad9-84387a763a71"
-        },
-        "data": "{\n\t\"password\":\"summerland\"\n}"
-       }
-       
-       $.ajax(settings).done(function (response) {
-        console.log(response);
-       });
-      */
+  }
+
+  onKeyPress(event){
+    if(event.charCode == 13){
+      event.preventDefault();
+      this.onClick();
+    }
   }
 }
 
